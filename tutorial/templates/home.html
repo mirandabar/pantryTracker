@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>home</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
     <h1>Welcome to the Pantry Tracker!</h1>
     <p>This is the home page.</p>
     <a href="{% url 'about' %}"> Check out my About page</a>
-</body>
-</html>
+{% endblock %}
