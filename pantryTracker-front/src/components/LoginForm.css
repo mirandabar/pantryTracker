@@ -1,0 +1,150 @@
+/* LoginForm Component Styles */
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.form-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-color, #2d3748);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+.p-field {
+  margin-bottom: 1.5rem;
+}
+
+.p-float-label {
+  position: relative;
+}
+
+.p-float-label label {
+  color: var(--text-color-secondary, #718096);
+  font-weight: 500;
+}
+
+.p-inputtext {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color, #e2e8f0);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+.p-inputtext:focus {
+  border-color: var(--primary-color, #3182ce);
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+  outline: none;
+}
+
+.p-inputtext:hover {
+  border-color: var(--primary-color-light, #63b3ed);
+}
+
+.input-label {
+  margin-bottom: 0.5rem;
+  display: block;
+  color: var(--text-color-secondary, #718096);
+  font-weight: 500;
+  text-align: left;
+}
+
+.input-error {
+  background-color: #ffeaea !important;
+  border-color: #e74c3c !important;
+}
+
+.input-error:focus {
+  background-color: #ffeaea !important;
+  border-color: #e74c3c !important;
+  box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25) !important;
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  gap: 0.5rem;
+}
+
+.checkbox-field input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary-color, #3182ce);
+  cursor: pointer;
+}
+
+.checkbox-field label {
+  color: var(--text-color-secondary, #718096);
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.p-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary-color, #3182ce);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.p-button:hover {
+  background-color: var(--primary-color-dark, #2c5aa0);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+}
+
+.p-button:active {
+  transform: translateY(0);
+}
+
+.p-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .form-card {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .form-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Additional spacing utility */
+.p-4 {
+  height: 1rem;
+}

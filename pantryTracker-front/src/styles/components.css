@@ -1,0 +1,59 @@
+/* Form components */
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-md);
+}
+
+.form-card {
+  background: var(--secondary-bg-color);
+  padding: var(--spacing-2xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.form-field {
+  margin-bottom: var(--spacing-lg);
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+.checkbox-field label {
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+/* Button styles */
+.btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  border: none;
+  font-weight: var(--font-weight-medium);
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-hover);
+}

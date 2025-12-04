@@ -1,0 +1,38 @@
+/* Global reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-bg-color);
+  font-family: var(--primary-font);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height);
+  color: var(--text-color);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global typography */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-color);
+}
+
+p {
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+/* Global form styles */
+input, button, select, textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}

@@ -1,0 +1,54 @@
+:root {
+  /* Variables globales para el proyecto */
+  --primary-font: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --primary-bg-color: #f8fafc;
+  --secondary-bg-color: #ffffff;
+  --text-color: #1a202c;
+  --text-color-light: #718096;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --primary-color: #3182ce;
+  --primary-color-hover: #2c5282;
+
+  font-family: var(--primary-font);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-color);
+  background-color: var(--primary-bg-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilos globales */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-bg-color);
+  font-family: var(--primary-font);
+}
+
+/* Clases utilitarias globales */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.card {
+  background: var(--secondary-bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* Import common styles */
+@import './styles/variables.css';
+@import './styles/global.css';
+@import './styles/utilities.css';
+@import './styles/components.css';
