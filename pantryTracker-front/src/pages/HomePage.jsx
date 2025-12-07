@@ -1,3 +1,10 @@
+import Layout from "../components/LayoutPage";
+import Home from "../components/Home";
+
 export default function HomePage() {
-  return <h1>Página de Inicio</h1>;
+  return (
+    <Layout>
+      <Home />
+    </Layout>
+  );
 }
