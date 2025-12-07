@@ -1,15 +1,15 @@
 # pantryTracker
 
-Necesito abrir una PS como admin y ejecutar Set-ExecutionPolicy RemoteSigned para poder activar el entorno virtual
-
-Activar entorno virtual:
-    .\.venv\Scripts\activate
-
-Tutorial inicio
-https://www.youtube.com/watch?v=Rp5vd34d-z4
-
 Lanzar app:
-    python .\manage.py runserver
+    Python:
+        desde pantryTracker
+            .\.venv\Scripts\activate
+        cd pantryTracker-back-python
+        python app.py
 
-Crear app:
-    python .\manage.py startapp posts
+    Java:
+        Play desde Intellij
+
+    React:
+        cd pantryTracker-front
+        npm run dev

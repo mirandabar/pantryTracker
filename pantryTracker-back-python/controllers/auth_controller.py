@@ -23,6 +23,9 @@ def login():
         
         # TODO: Generar token JWT o sesión
         # token = generate_jwt_token(user.id)
+
+        print("Login attempt for email:", email)  # Debugging line
+        print("Password received:", password)  # Debugging line
         
         # Respuesta por defecto (OK)
         return jsonify({

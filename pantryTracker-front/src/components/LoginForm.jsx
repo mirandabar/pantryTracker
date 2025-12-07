@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import { useNavigate } from "react-router-dom";  // Agregar import
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from "react-router-dom"; 
 import './LoginForm.css';
 import { setEmail, setPassword } from "../utils/setters";
 
-import { login } from "../api/authApi";
+import { loginApi } from "../api/authApi";
 
 const LoginForm = () => {
-  const navigate = useNavigate();  // Definir navigate
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmailState] = useState("");
   const [password, setPasswordState] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");  // Definir errorMessage
@@ -38,6 +39,10 @@ const LoginForm = () => {
     setPasswordError(result.error);
   };
 
+  const newUser = () => {
+    navigate("/register");
+  };
+
   const loginSubmit = async (event) => {
     event.preventDefault();
     
@@ -50,20 +55,24 @@ const LoginForm = () => {
     if (emailResult.isValid && passwordResult.isValid) {
       console.log("Email:", email);
       console.log("Password:", password);
-      console.log("Remember Me:", rememberMe);
       
       try {
-        const result = await login(email, password);
+        const result = await loginApi(email, password);
+
+        console.log("Login result:", result);
 
         if (result.ok) {
-          localStorage.setItem("token", result.data.token);
-          navigate("/home");
+          login({ token: result.data.token, username: result.data.username });
+          navigate('/home');
         } else {
-          setErrorMessage(result.data.message || "Error de autenticación");
+          setErrorMessage(result.data.error || result.data.message || "Error de autenticación");
         }
       } catch (error) {
         setErrorMessage("Error de conexión con el servidor");
       }
+    }
+    else {
+      setErrorMessage("Por favor corrige los errores en el formulario");
     }
   };
 
@@ -102,19 +111,11 @@ const LoginForm = () => {
             />
             {passwordError && <small className="p-error">{passwordError}</small>}
           </div>
-          <div className="checkbox-field">
-            <input
-              type="checkbox"
-              id="rememberMe"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
-            />
-            <label htmlFor="rememberMe">
-              Recuérdame
-            </label>
-          </div>
           <div className="p-field p-col-12 p-md-12">
             <Button type="submit" label="Ingresar" onClick={loginSubmit} />
+          </div>
+          <div className="p-field p-col-12 p-md-12">
+            <Button type="button" label="Nuevo Usuario" onClick={newUser} />
           </div>
           {errorMessage && (
             <div className="p-field">

@@ -17,3 +17,21 @@ export function setPassword(password) {
     error: isValid ? null : 'Password must be at least 6 characters'
   };
 }
+
+export function setUserName(userName) {
+  const isValid = userName && userName.trim().length > 0;
+  return {
+    value: userName,
+    isValid: isValid,
+    error: isValid ? null : 'Username cannot be empty'
+  };
+}
+
+export function setConfirmPassword(confirmPassword, password) {
+  const isValid = confirmPassword === password;
+  return {
+    value: confirmPassword,
+    isValid: isValid,
+    error: isValid ? null : 'Passwords do not match'
+  };
+}
