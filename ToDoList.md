@@ -24,7 +24,6 @@ Tabla Users:
 | username      | varchar  | único              |
 | email         | varchar  | único              |
 | password_hash | varchar  | hash bcrypt/argon2 |
-| created_at    | datetime |                    |
 
 Tabla Items:
 | campo        | tipo     | notas                |
@@ -34,6 +33,7 @@ Tabla Items:
 | name         | text     |                      |
 | quantity     | text     | opcional             |
 | category     | text     | opcional             |
+| price        | text     | opcional             |
 | added_at     | datetime |                      |
 | is_completed | boolean  | false por defecto    |
 

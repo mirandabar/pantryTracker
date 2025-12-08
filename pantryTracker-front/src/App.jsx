@@ -4,9 +4,12 @@ import ProtectedRoute from './components/ProtectedRoute'
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
-import ItemsPage from "./pages/ItemsPage";
 import HistoryPage from "./pages/HistoryPage";
-import GenerateListPage from "./pages/GenerateListPage";
+import PantryPage from "./pages/PantryPage";
+import AddPurchasePage from "./pages/AddPurchasePage";
+import AddProductPage from "./pages/AddProductPage";
+import ShoppingListPage from "./pages/ShoppingListPage";
+import ExpirationsPage from "./pages/ExpirationsPage";
 
 function App() {
   return (
@@ -22,9 +25,29 @@ function App() {
               <HomePage />
             </ProtectedRoute>
           } />
-          <Route path="/items" element={
+          <Route path="/pantry" element={
             <ProtectedRoute>
-              <ItemsPage />
+              <PantryPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/add-purchase" element={
+            <ProtectedRoute>
+              <AddPurchasePage />
+            </ProtectedRoute>
+          } />
+          <Route path="/add-product" element={
+            <ProtectedRoute>
+              <AddProductPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/shopping-list" element={
+            <ProtectedRoute>
+              <ShoppingListPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/expirations" element={
+            <ProtectedRoute>
+              <ExpirationsPage />
             </ProtectedRoute>
           } />
           <Route path="/history" element={
@@ -32,12 +55,6 @@ function App() {
               <HistoryPage />
             </ProtectedRoute>
           } />
-          <Route path="/generate" element={
-            <ProtectedRoute>
-              <GenerateListPage />
-            </ProtectedRoute>
-          } />
-          
           <Route path="*" element={<div>Página no encontrada</div>} />
 
         </Routes>

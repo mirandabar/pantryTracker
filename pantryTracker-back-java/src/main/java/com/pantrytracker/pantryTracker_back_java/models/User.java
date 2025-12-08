@@ -14,6 +14,8 @@ public class User {
     private String email;
     private String password; // almacenado como hash
 
+    public User() {}
+
     public Long getId() { return id; }
     public String getUserName() { return userName; }
     public String getEmail() { return email; }

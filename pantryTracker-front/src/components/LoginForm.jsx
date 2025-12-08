@@ -15,7 +15,8 @@ const LoginForm = () => {
   const [password, setPasswordState] = useState("");
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");  // Definir errorMessage
+  const [errorMessage, setErrorMessage] = useState(""); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChangeEmail = (e) => {
     setEmailState(e.target.value);
@@ -44,8 +45,13 @@ const LoginForm = () => {
   };
 
   const loginSubmit = async (event) => {
+
+    if (isLoading) return;
+
     event.preventDefault();
-    
+    setIsLoading(true);
+    document.body.style.cursor = 'wait';
+
     const emailResult = setEmail(email);
     const passwordResult = setPassword(password);
     
@@ -59,16 +65,17 @@ const LoginForm = () => {
       try {
         const result = await loginApi(email, password);
 
-        console.log("Login result:", result);
-
         if (result.ok) {
-          login({ token: result.data.token, username: result.data.username });
+          login({ token: result.data.data.token, username: result.data.data.username });
           navigate('/home');
         } else {
           setErrorMessage(result.data.error || result.data.message || "Error de autenticación");
         }
       } catch (error) {
         setErrorMessage("Error de conexión con el servidor");
+      } finally {
+        setIsLoading(false);
+        document.body.style.cursor = 'default';
       }
     }
     else {
@@ -78,7 +85,9 @@ const LoginForm = () => {
 
   return (
     <div className="form-container">
-      <form autoComplete="off" onSubmit={loginSubmit} className="form-card">
+      <form autoComplete="off" onSubmit={loginSubmit} className="form-card" 
+          disabled={isLoading}
+          style={{ cursor: isLoading ? 'wait' : 'pointer' }}>
         <div className="p-fluid">
           <div className="form-field">
             <h2 className="form-title">Iniciar Sesión</h2>

@@ -26,4 +26,5 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         return authService.register(request);
     }
+
 }

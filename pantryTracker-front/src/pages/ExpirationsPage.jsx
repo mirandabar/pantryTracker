@@ -1,15 +1,15 @@
 import React from 'react';
 import Layout from "../components/LayoutPage";
 
-function HistoryPage() {
+function ExpirationsPage() {
   return (
     <Layout>
       <div className="page-container">
-        <h2>Historial de Compras</h2>
-        <p>Consulta todas tus compras anteriores.</p>
+        <h2>Caducidades</h2>
+        <p>Revisa los productos próximos a caducar.</p>
       </div>
     </Layout>
   );
 }
 
-export default HistoryPage;
+export default ExpirationsPage;

@@ -6,10 +6,12 @@ function Home() {
   const navigate = useNavigate();
 
   const menuOptions = [
-    { title: 'Inventario', path: '/inventory', icon: '📦' },
-    { title: 'Recetas', path: '/recipes', icon: '📖' },
-    { title: 'Lista de Compras', path: '/shopping-list', icon: '🛒' },
-    { title: 'Estadísticas', path: '/statistics', icon: '📊' }
+    {title: 'Mi despensa', path: '/pantry', icon: '🧺' },
+    {title: 'Registar compra', path: '/add-purchase', icon: '🛒' },
+    {title: 'Agregar producto necesario', path: '/add-product', icon: '➕' },
+    {title: 'Lista de la compra', path: '/shopping-list', icon: '📝' },
+    {title: 'Caducidades', path: '/expirations', icon: '⏳' },
+    {title: 'Historial de compras', path: '/history', icon: '📜' },
   ];
 
   return (

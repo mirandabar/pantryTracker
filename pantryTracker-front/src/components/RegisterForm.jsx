@@ -19,7 +19,8 @@ const RegisterForm = () => {
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
   const [confirmPasswordError, setConfirmPasswordError] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");  // Definir errorMessage
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChangeEmail = (e) => {
     setEmailState(e.target.value);
@@ -66,7 +67,12 @@ const RegisterForm = () => {
   }
 
   const registerSubmit = async (event) => {
+
+    if (isLoading) return;
+    
     event.preventDefault();
+    setIsLoading(true);
+    document.body.style.cursor = 'wait';
 
     const emailResult    = setEmail(email);
     const passwordResult = setPassword(password);
@@ -89,17 +95,18 @@ const RegisterForm = () => {
 
       try {
         const result = await registerApi(userName, email, password);
-
-        console.log("Register result:", result);
         
         if (result.ok) {
-          login({ token: result.data.token, username: result.data.username });
+          login({ token: result.data.data.token, username: result.data.data.username });
           navigate("/home");
         } else {
           setErrorMessage(result.data.error || result.data.message || "Error de autenticación");
         }
       } catch (error) {
         setErrorMessage("Error de conexión con el servidor");
+      } finally {
+        setIsLoading(false);
+        document.body.style.cursor = 'default';
       }
     }
     else {
@@ -109,7 +116,9 @@ const RegisterForm = () => {
 
   return (
     <div className="form-container">
-      <form autoComplete="off" onSubmit={registerSubmit} className="form-card">
+      <form autoComplete="off" onSubmit={registerSubmit} className="form-card"
+          disabled={isLoading}
+          style={{ cursor: isLoading ? 'wait' : 'pointer' }}>
         <div className="p-fluid">
           <div className="form-field">
             <h2 className="form-title">Registro de Usuario</h2>

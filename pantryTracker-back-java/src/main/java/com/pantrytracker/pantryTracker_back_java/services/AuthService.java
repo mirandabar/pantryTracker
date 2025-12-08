@@ -23,5 +23,6 @@ public class AuthService {
     public ResponseEntity<?> register(RegisterRequest request) {
         return registerService.register(request);
     }
+
 }
 

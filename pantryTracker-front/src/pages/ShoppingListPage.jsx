@@ -1,15 +1,15 @@
 import React from 'react';
 import Layout from "../components/LayoutPage";
 
-function HistoryPage() {
+function ShoppingListPage() {
   return (
     <Layout>
       <div className="page-container">
-        <h2>Historial de Compras</h2>
-        <p>Consulta todas tus compras anteriores.</p>
+        <h2>Lista de la Compra</h2>
+        <p>Gestiona tu lista de productos por comprar.</p>
       </div>
     </Layout>
   );
 }
 
-export default HistoryPage;
+export default ShoppingListPage;
