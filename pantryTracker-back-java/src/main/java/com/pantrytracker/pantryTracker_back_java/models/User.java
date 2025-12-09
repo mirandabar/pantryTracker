@@ -1,6 +1,7 @@
 package com.pantrytracker.pantryTracker_back_java.models;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -13,6 +14,10 @@ public class User {
     private String userName;
     private String email;
     private String password; // almacenado como hash
+
+    // Relación uno a muchos con productos
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products;
 
     public User() {}
 

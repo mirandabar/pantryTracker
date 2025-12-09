@@ -3,12 +3,13 @@ package com.pantrytracker.pantryTracker_back_java.models;
 public class ProductBuilder {
 
     private Long id;
-    private String userName;
+    private User user;
     private String productName;
     private String category;
     private Integer quantity;
     private Float price;
     private String expirationDate;
+    private String purchaseDate;
 
     public ProductBuilder() {}
 
@@ -21,8 +22,8 @@ public class ProductBuilder {
         return this;
     }
 
-    public ProductBuilder userName(String userName) {
-        this.userName = userName;
+    public ProductBuilder user(User user) {
+        this.user = user;
         return this;
     }
 
@@ -51,16 +52,23 @@ public class ProductBuilder {
         return this;
     }
 
+    public ProductBuilder purchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
+        return this;
+    }
+
     public Product build() {
         Product p = new Product();
         p.setId(this.id);
-        p.setUserName(this.userName);
+        p.setUser(this.user);
         p.setProductName(this.productName);
         p.setCategory(this.category);
         p.setQuantity(this.quantity);
         p.setPrice(this.price);
         p.setExpirationDate(this.expirationDate);
+        p.setPurchaseDate(this.purchaseDate);
         return p;
     }
 }
+
 

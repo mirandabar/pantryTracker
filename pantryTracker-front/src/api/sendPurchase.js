@@ -1,5 +1,5 @@
 export async function sendPurchaseApi(purchaseData, token) {
-  const response = await fetch("http://localhost:8080/api/addPurchase", {
+  const response = await fetch("http://localhost:8080/api/purchase/add", {
     method: "POST",
     headers: { 
       "Content-Type": "application/json",

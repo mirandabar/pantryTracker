@@ -6,6 +6,6 @@ import com.pantrytracker.pantryTracker_back_java.models.Product;
 
 @Repository
 public interface PurchaseRepository extends JpaRepository<Product, Long> {
-    Product findByUserName(String userName);
-    boolean existsByUserName(String userName);
+    Product findByUser(String userName);
+    boolean existsByUser(String userName);
 }
