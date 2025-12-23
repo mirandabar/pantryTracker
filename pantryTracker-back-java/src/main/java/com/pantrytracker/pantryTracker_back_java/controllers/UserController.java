@@ -1,13 +1,12 @@
 package com.pantrytracker.pantryTracker_back_java.controllers;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.pantrytracker.pantryTracker_back_java.repositories.UserRepository;
 import com.pantrytracker.pantryTracker_back_java.models.User;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -22,11 +21,11 @@ public class UserController {
     @GetMapping("/me")
     public ResponseEntity<?> getCurrentUser(Authentication authentication) {
         String username = authentication.getName(); // lo extrae del JWT
-        User user = userRepository.findByUserName(username);
-        if (user == null) {
+        Optional<User> user = userRepository.findByUserName(username);
+        if (user.isEmpty()) {
             return ResponseEntity.status(404).body("User not found");
         }
-        return ResponseEntity.ok(new UserResponse(user.getUserName()));
+        return ResponseEntity.ok(new UserResponse(user.get().getUserName()));
     }
 
     public record UserResponse(String userName) {}

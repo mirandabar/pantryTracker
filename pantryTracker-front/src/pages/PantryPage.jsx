@@ -1,13 +1,11 @@
 import React from 'react';
 import Layout from "../components/LayoutPage";
+import Pantry from '../components/Pantry';
 
 function PantryPage() {
   return (
     <Layout>
-      <div className="page-container">
-        <h2>Mi Despensa</h2>
-        <p>Aquí podrás ver todos los productos de tu despensa.</p>
-      </div>
+      <Pantry />
     </Layout>
   );
 }

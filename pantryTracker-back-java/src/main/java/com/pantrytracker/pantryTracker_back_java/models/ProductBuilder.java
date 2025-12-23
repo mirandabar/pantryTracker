@@ -3,7 +3,7 @@ package com.pantrytracker.pantryTracker_back_java.models;
 public class ProductBuilder {
 
     private Long id;
-    private User user;
+    private Long userId;
     private String productName;
     private String category;
     private Integer quantity;
@@ -22,8 +22,8 @@ public class ProductBuilder {
         return this;
     }
 
-    public ProductBuilder user(User user) {
-        this.user = user;
+    public ProductBuilder user(Long userId) {
+        this.userId = userId;
         return this;
     }
 
@@ -60,7 +60,7 @@ public class ProductBuilder {
     public Product build() {
         Product p = new Product();
         p.setId(this.id);
-        p.setUser(this.user);
+        p.setUserId(this.userId);
         p.setProductName(this.productName);
         p.setCategory(this.category);
         p.setQuantity(this.quantity);

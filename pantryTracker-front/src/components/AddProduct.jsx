@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sendPurchaseApi } from '../api/sendPurchase';
+import { sendProductListApi } from '../api/sendProductList';
 import './AddBase.css';
 
-function AddPurchase() {
+function AddProduct() {
   const navigate = useNavigate();
   
   // Configuración centralizada de las columnas del formulario
@@ -21,9 +21,7 @@ function AddPurchase() {
       'Higiene Personal',
       'Otros'
     ]},
-    { field: 'quantity', label: 'Cantidad', required: true, type: 'number', placeholder: 'Cantidad', min: 0 },
-    { field: 'price', label: 'Precio (€)', required: false, type: 'number', placeholder: 'Precio', min: 0, step: 0.5 },
-    { field: 'expirationDate', label: 'Fecha de Caducidad', required: false, type: 'date' }
+    { field: 'quantity', label: 'Cantidad', required: true, type: 'number', placeholder: 'Cantidad', min: 0 }
   ];
   //Numero de filas iniciales
   const INITIAL_ROW_COUNT = 5;
@@ -49,22 +47,6 @@ function AddPurchase() {
 
   const handleRowChange = (id, field, value) => {
     setRows(rows.map(row => row.id === id ? { ...row, [field]: value } : row));
-  };
-
-  const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
-
-  const handleImageDelete = () => {
-    setImage(null);
-    document.getElementById('image-input').value = '';
-  };
-
-  const handleProcessImage = () => {
-    // Handle image processing
-    console.log('Processing image:', image);
   };
 
   const elimnateEmptyRows = (rows) => {
@@ -122,17 +104,15 @@ function AddPurchase() {
         return;
       }
 
-      console.log('Enviando datos de compra:', JSON.stringify(data));
-
-      const result = await sendPurchaseApi(data, token);
+      const result = await sendProductListApi(data, token);
       
       if (result.ok) {
-        setMessage({ text: '¡Compra guardada exitosamente!', type: 'success' });
+        setMessage({ text: '¡Lista de la compra guardada exitosamente!', type: 'success' });
       } else {
-        setMessage({ text: `Error al guardar la compra: ${result.data.message || 'Error desconocido'}`, type: 'error' });
+        setMessage({ text: `Error al guardar la lista de la compra: ${result.data.message || 'Error desconocido'}`, type: 'error' });
       }
     } catch (error) {
-      console.error('Error al enviar datos de compra:', error);
+      console.error('Error al enviar datos de lista de la compra:', error);
       setMessage({ text: 'Error de conexión. Por favor, intente nuevamente.', type: 'error' });
     } finally {
       setIsLoading(false);
@@ -144,14 +124,14 @@ function AddPurchase() {
     setMessage({ text: '', type: '' });
   }
 
-  const savePurchase = async (e) => {
+  const saveList = async (e) => {
     e.preventDefault();
 
     if (isLoading) return;
 
     clearMessage();
 
-    const purchaseData = rows.map(row => {
+    const productList = rows.map(row => {
       const data = {};
       FORM_COLUMNS.forEach(col => {
         data[col.field] = row[col.field];
@@ -159,16 +139,16 @@ function AddPurchase() {
       return data;
     });
 
-    const purchaseDataFiltered = elimnateEmptyRows(purchaseData);
+    const productListFiltered = elimnateEmptyRows(productList);
 
-    let flag = validateRows(purchaseDataFiltered);
+    let flag = validateRows(productListFiltered);
     
     if (flag !== 0) {
       setMessage({ text: generateAlertMessage(flag), type: 'error' });
       return;
     }
 
-    await sendPurchaseData(purchaseDataFiltered);
+    await sendPurchaseData(productListFiltered);
     
     if (message.type === 'success') {
       cleanPurchaseData();
@@ -213,39 +193,6 @@ function AddPurchase() {
             <button type="button" onClick={() => addRows(5)}>+ 5 filas</button>
             <button type="button" onClick={() => addRows(10)}>+ 10 filas</button>
           </div>
-          
-          <div className="image-upload">
-            <input 
-              type="file" 
-              id="image-input" 
-              accept="image/*" 
-              onChange={handleImageChange}
-              style={{ display: 'none' }}
-            />
-            {!image ? (
-              <label htmlFor="image-input" className="image-upload-btn">
-                📷 Subir imagen
-              </label>
-            ) : (
-              <>
-                <span className="image-name">{image.name}</span>
-                <button 
-                  type="button" 
-                  onClick={handleImageDelete}
-                  className="image-delete-btn"
-                >
-                  🗑️ Eliminar imagen
-                </button>
-                <button 
-                  type="button" 
-                  onClick={handleProcessImage}
-                  className="image-process-btn"
-                >
-                  🔄 Procesar imagen
-                </button>
-              </>
-            )}
-          </div>
         </div>
 
         <div className="table-container">
@@ -276,11 +223,11 @@ function AddPurchase() {
         <button 
           type="submit" 
           className="submit-btn" 
-          onClick={savePurchase}
+          onClick={saveList}
           disabled={isLoading}
           style={{ cursor: isLoading ? 'wait' : 'pointer' }}
         >
-          {isLoading ? 'Guardando...' : 'Guardar compra'}
+          {isLoading ? 'Guardando...' : 'Guardar productos necesarios'}
         </button>
         
         {message.text && (
@@ -293,4 +240,4 @@ function AddPurchase() {
   );
 }
 
-export default AddPurchase;
+export default AddProduct;

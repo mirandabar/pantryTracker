@@ -23,7 +23,7 @@ Tabla Users:
 | id            | PK int   |                    |
 | username      | varchar  | único              |
 | email         | varchar  | único              |
-| password_hash | varchar  | hash bcrypt/argon2 |
+| password      | varchar  | hash bcrypt/argon2 |
 
 Tabla Items:
 | campo        | tipo     | notas                |

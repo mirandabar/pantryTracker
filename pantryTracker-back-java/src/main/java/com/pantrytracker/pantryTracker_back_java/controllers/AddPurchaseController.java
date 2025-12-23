@@ -23,6 +23,7 @@ public class AddPurchaseController {
     @PostMapping("/add")
     public ResponseEntity<?> addPurchase(@RequestBody List<Product> items) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        assert authentication != null;
         String username = authentication.getName(); // lo extrae del JWT
 
         boolean isCorrect = addPurchaseService.addPurchase(items, username);

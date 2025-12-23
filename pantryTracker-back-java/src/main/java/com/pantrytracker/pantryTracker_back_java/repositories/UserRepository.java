@@ -1,14 +1,29 @@
 package com.pantrytracker.pantryTracker_back_java.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import com.pantrytracker.pantryTracker_back_java.models.User;
+import java.util.Optional;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByEmail(String email);
-    User findByUserName(String userName);
+public interface UserRepository {
+
+    Optional<User> findById(Long id);
+
+    Optional<User> findByUserName(String userName);
+
+    Optional<User> findByEmail(String email);
+
+    boolean existsByUserName(String userName);
 
     boolean existsByEmail(String email);
-    boolean existsByUserName(String userName);
+
+    String getPasswordHashByUserName(String userName);
+    String getPasswordHashByEmail(String email);
+
+    String getUserNameByEmail(String email);
+    String getEmailByUserName(String userName);
+
+    Long getUserIdByUserName(String userName);
+    Long getUserIdByEmail(String email);
+
+    Long save(User user);
 }
+

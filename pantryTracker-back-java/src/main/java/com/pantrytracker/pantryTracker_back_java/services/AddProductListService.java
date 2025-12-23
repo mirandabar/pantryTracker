@@ -1,23 +1,22 @@
 package com.pantrytracker.pantryTracker_back_java.services;
 
-import com.pantrytracker.pantryTracker_back_java.models.Product;
-import com.pantrytracker.pantryTracker_back_java.models.User;
-import com.pantrytracker.pantryTracker_back_java.repositories.PurchaseRepository;
+import com.pantrytracker.pantryTracker_back_java.models.ProductList;
+import com.pantrytracker.pantryTracker_back_java.repositories.ProductListRepository;
 import com.pantrytracker.pantryTracker_back_java.repositories.UserRepository;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
+import java.util.List;
 
 @Service
-public class AddPurchaseService {
+public class AddProductListService {
 
-    private final PurchaseRepository purchaseRepository;
+    private final ProductListRepository productListRepository;
     private final UserRepository userRepository;
 
-    public AddPurchaseService(PurchaseRepository purchaseRepository, UserRepository userRepository) {
-        this.purchaseRepository = purchaseRepository;
+    public AddProductListService(ProductListRepository productListRepository, UserRepository userRepository) {
+        this.productListRepository = productListRepository;
         this.userRepository = userRepository;
     }
 
@@ -27,7 +26,7 @@ public class AddPurchaseService {
         return currentDate.format(formatter);
     }
 
-    public boolean addPurchase(List<Product> items, String userName) {
+    public boolean addProductList(List<ProductList> items, String userName) {
 
         if (!userRepository.existsByUserName(userName)) {
             return false;
@@ -35,14 +34,25 @@ public class AddPurchaseService {
 
         Long userId = userRepository.getUserIdByUserName(userName);
 
-        for (Product product : items) {
+        for (ProductList product : items) {
             product.setUserId(userId);
             product.setProductName(product.getProductName().toLowerCase());
             product.setPurchaseDate(getCurrentDate());
-            purchaseRepository.save(product);
+            productListRepository.save(product);
         }
 
         return true;
+    }
+
+    public List<ProductList> getProductList(String userName) {
+
+        if (!userRepository.existsByUserName(userName)) {
+            return null;
+        }
+
+        Long userId = userRepository.getUserIdByUserName(userName);
+
+        return productListRepository.findByUserId(userId);
     }
 
 }

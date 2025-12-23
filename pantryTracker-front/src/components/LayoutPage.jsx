@@ -1,27 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 import './_Page.css';
 import './Home.css';
 
-import { getUserInfoApi } from '../api/userInfoApi';
-
 function Layout({ children }) {
-  const [currentUser, setCurrentUser] = useState("Usuario");
+  const { currentUser } = useUser();
   const location = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    async function loadUser() {
-      const token = sessionStorage.getItem("token");
-      const data = await getUserInfoApi(token);
-      if (data && data.userName) {
-        setCurrentUser(data.userName);
-      }
-    }
-
-    loadUser();
-  }, []);
-
 
   const handleSettings = () => {
     // TODO: Implementar navegación a configuración de usuario

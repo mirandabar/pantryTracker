@@ -22,7 +22,7 @@ public class LoginService {
     }
 
     private boolean isPasswordCorrect(String email, String password) {
-        String storedPassword = userRepository.findByEmail(email).getPassword();
+        String storedPassword = userRepository.getPasswordHashByEmail(email);
         return encoder.matches(password, storedPassword);
     }
 
@@ -49,7 +49,7 @@ public class LoginService {
                     .body(errorResponse);
         }
 
-        String userName = userRepository.findByEmail(email).getUserName();
+        String userName = userRepository.getUserNameByEmail(email);
 
         Map<String, Object> successResponse = new HashMap<>();
         successResponse.put("message", "Inicio de sesión exitoso");
