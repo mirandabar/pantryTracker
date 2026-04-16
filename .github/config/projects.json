@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "id": "back-java",
+      "name": "Backend Java",
+      "path": "pantryTracker-back-java",
+      "projectFolder": "projects/pantry-back-java",
+      "agent": "java-developer.agent.md",
+      "description": "Backend principal con Spring Boot",
+      "tech": ["Java", "Spring Boot", "Maven", "SQLite"],
+      "inheritance": ["shared"]
+    },
+    {
+      "id": "back-python",
+      "name": "Backend Python",
+      "path": "pantryTracker-back-python",
+      "projectFolder": "projects/pantry-back-python",
+      "agent": "python-developer.agent.md",
+      "description": "Microservicios Python para reportes y PDFs",
+      "tech": ["Python", "Flask", "reportlab", "SQLite"],
+      "inheritance": ["shared"]
+    },
+    {
+      "id": "front-react",
+      "name": "Frontend React",
+      "path": "pantryTracker-front",
+      "projectFolder": "projects/pantry-front",
+      "agent": "react-developer.agent.md",
+      "description": "Interfaz de usuario con React y Vite",
+      "tech": ["React", "Vite", "JavaScript", "CSS"],
+      "inheritance": ["shared"]
+    }
+  ],
+  "structure": {
+    "agents": "Definiciones de agentes para cada proyecto",
+    "instructions": "Guías y estándares específicos del proyecto",
+    "skills": "Competencias y tareas específicas",
+    "shared": "Recursos comunes para todos los proyectos"
+  }
+}
