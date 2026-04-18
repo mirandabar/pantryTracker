@@ -1,90 +1,183 @@
-# Estructura de Agentes y Proyectos - Pantry Tracker
+# 📚 Documentación de .github
 
-Este directorio contiene la configuración modular de agentes, instrucciones y skills para cada proyecto dentro del Pantry Tracker.
+**Última actualización:** 2024
+
+---
+
+## 🎯 Propósito
+
+Esta carpeta `.github/` contiene toda la documentación, instrucciones y workflows necesarios para que los agentes especializados desarrollen de forma consistente, coordinada y de alta calidad.
 
 ## 📁 Estructura
 
 ```
 .github/
-├── projects/
-│   ├── pantry-back-java/          # Agente Java Development Team
-│   │   ├── agents/                # Definiciones de agentes
-│   │   ├── instructions/          # Guías específicas del proyecto
-│   │   └── skills/                # Competencias requeridas
-│   │
-│   ├── pantry-back-python/        # Agente Python Development Team
-│   │   ├── agents/
-│   │   ├── instructions/
-│   │   └── skills/
-│   │
-│   └── pantry-front/              # Agente Frontend Development Team
-│       ├── agents/
-│       ├── instructions/
-│       └── skills/
-│
-├── shared/                        # Recursos compartidos entre proyectos
-│   ├── instructions/
-│   │   └── coding-standards.md   # Estándares generales de código
-│   └── skills/
-│
-├── config/
-│   └── projects.json             # Configuración central de proyectos
-│
-└── README.md                       # Este archivo
-
+├── agents/                    # Definición de agentes especializados
+├── instructions/              # Guías y estándares
+│   ├── languages/            # Por lenguaje (React, Java, Python)
+│   ├── projects/             # Por proyecto (front, back-java, back-python)
+│   └── shared/               # Estándares compartidos
+├── prompts/                  # Prompts para el workflow READ→PLAN→IMPLEMENT→REVIEW
+├── skills/                   # Habilidades específicas (análisis, planning, etc)
+├── config/                   # Configuración (workflow.yaml)
+└── README.md                 # Este archivo
 ```
 
-## 🎯 Proyectos
+## 🤖 Agentes Especializados
 
-### 1️⃣ Backend Java (`pantry-back-java/`)
-**Agente:** [Java Developer](projects/pantry-back-java/agents/java-developer.agent.md)  
-**Tech Stack:** Java, Spring Boot, Maven, JUnit  
-**Responsabilidades:**
-- APIs REST con Spring Boot
-- Lógica de negocio en servicios
-- Acceso a datos con repositorios
-- Tests unitarios
+### 1. React Developer
+- **Archivo:** [agents/react-developer.agent.md](agents/react-developer.agent.md)
+- **Especialidad:** Desarrollo de frontend en React
+- **Scope:** `pantryTracker-front/**`
 
-[📚 Ver Instrucciones](projects/pantry-back-java/instructions/architecture.instructions.md)
+### 2. Java Developer
+- **Archivo:** [agents/java-developer.agent.md](agents/java-developer.agent.md)
+- **Especialidad:** Backend con Spring Boot
+- **Scope:** `pantryTracker-back-java/**`
 
----
+### 3. Python Developer
+- **Archivo:** [agents/python-developer.agent.md](agents/python-developer.agent.md)
+- **Especialidad:** Backend con Flask
+- **Scope:** `pantryTracker-back-python/**`
 
-### 2️⃣ Backend Python (`pantry-back-python/`)
-**Agente:** [Python Developer](projects/pantry-back-python/agents/python-developer.agent.md)  
-**Tech Stack:** Python, Flask, reportlab  
-**Responsabilidades:**
-- Microservicios en Flask
-- Generación de PDFs y reportes
-- Integración con APIs externas
-- Tests con pytest
+## 📚 Instrucciones por Estratos
 
-[📚 Ver Instrucciones](projects/pantry-back-python/instructions/architecture.instructions.md)
+### Nivel 3: Estándares Compartidos
+```
+.github/instructions/shared/
+└── coding-standards.md       # Convenciones para TODOS los proyectos
+```
 
----
+### Nivel 2: Instrucciones por Lenguaje
+```
+.github/instructions/languages/
+├── react.instructions.md      # Convenciones específicas de React
+├── java.instructions.md       # Convenciones específicas de Java
+└── python.instructions.md     # Convenciones específicas de Python
+```
 
-### 3️⃣ Frontend React (`pantry-front/`)
-**Agente:** [React Developer](projects/pantry-front/agents/react-developer.agent.md)  
-**Tech Stack:** React 18, Vite, JavaScript, CSS  
-**Responsabilidades:**
-- Componentes React reutilizables
-- Páginas y rutas
-- Integración con APIs
-- Estado global con Context API
-- Optimización de performance
+### Nivel 1: Instrucciones por Proyecto
+```
+.github/instructions/projects/
+├── front/
+│   ├── context.md           # Contexto del proyecto frontend
+│   ├── architecture.instructions.md
+│   └── specifications.instructions.md
+├── back-java/
+│   ├── context.md           # Contexto del proyecto Java
+│   ├── architecture.instructions.md
+│   └── specifications.instructions.md
+└── back-python/
+    ├── context.md           # Contexto del proyecto Python
+    ├── architecture.instructions.md
+    └── specifications.instructions.md
+```
 
-[📚 Ver Instrucciones](projects/pantry-front/instructions/architecture.instructions.md)
+**Jerarquía:** Proyecto > Lenguaje > Compartido
 
----
 
-## 📋 Estándares Compartidos
+## 🔄 Workflow Principal
 
-Todos los proyectos heredan los estándares definidos en:  
-[🔗 Coding Standards](shared/instructions/coding-standards.md)
+### READ → PLAN → IMPLEMENT → REVIEW
 
-Incluye:
-- ✅ Principios de legibilidad y consistencia
-- 🐛 Control de calidad y testing
-- 📝 Convenciones de commits y PRs
+Todos los agentes deben seguir este workflow para cualquier tarea:
+
+```
+READ PROJECT       (15-30 min)
+├─ Entender estructura
+├─ Analizar código existente
+└─ Output: Reporte de contexto
+
+PLAN               (20-40 min)
+├─ Descomponer requisitos
+├─ Diseñar solución
+├─ Crear plan detallado
+└─ Output: Plan de implementación
+
+IMPLEMENT          (Variable)
+├─ Crear componentes
+├─ Escribir código
+├─ Crear tests
+└─ Output: Código funcional
+
+REVIEW             (10-20 min)
+├─ Validar código
+├─ Revisar tests
+├─ Documentar cambios
+└─ Output: Código listo para producción
+```
+
+## 💡 Prompts para Cada Fase
+
+```
+prompts/
+├── read-project.prompt.md           # Para fase READ
+├── plan-implementation.prompt.md    # Para fase PLAN
+├── implement.prompt.md              # Para fase IMPLEMENT
+└── review.prompt.md                 # Para fase REVIEW
+```
+
+Cada prompt contiene instrucciones detalladas, checklists y formatos esperados.
+
+## 🛠️ Skills (Habilidades Específicas)
+
+```
+skills/
+├── code-analysis.skill.md           # Analizar código existente
+├── planning.skill.md                # Planificar implementaciones
+├── implementation.skill.md          # Escribir código de calidad
+└── handoff.skill.md                 # Coordinación con otros agentes
+```
+
+Cada skill proporciona técnicas, procedimientos y ejemplos prácticos.
+
+## 🚀 Cómo Usar Esta Documentación
+
+### Para Empezar un Feature/Bug Nuevo
+
+```
+1. Lee tu agent file
+   └─ agents/[tu-especialidad]-developer.agent.md
+
+2. Ejecuta el workflow
+   ├─ Fase READ: Usa prompts/read-project.prompt.md + skills/code-analysis
+   ├─ Fase PLAN: Usa prompts/plan-implementation.prompt.md + skills/planning
+   ├─ Fase IMPLEMENT: Usa prompts/implement.prompt.md + skills/implementation
+   └─ Fase REVIEW: Usa prompts/review.prompt.md
+
+3. Si hay coordinación con otros agentes
+   └─ Usa skills/handoff.skill.md
+```
+
+### Para Entender Convenciones
+
+```
+1. Lee en este orden:
+   ├─ .github/instructions/projects/[tu-proyecto]/context.md
+   ├─ .github/instructions/languages/[tu-lenguaje].instructions.md
+   └─ .github/instructions/shared/coding-standards.md
+```
+
+## 🔗 Links Rápidos
+
+**Por Rol:**
+- [React Developer](agents/react-developer.agent.md)
+- [Java Developer](agents/java-developer.agent.md)
+- [Python Developer](agents/python-developer.agent.md)
+
+**Por Proyecto:**
+- [Frontend](instructions/projects/front/context.md)
+- [Backend Java](instructions/projects/back-java/context.md)
+- [Backend Python](instructions/projects/back-python/context.md)
+
+**Por Lenguaje:**
+- [React](instructions/languages/react.instructions.md)
+- [Java](instructions/languages/java.instructions.md)
+- [Python](instructions/languages/python.instructions.md)
+
+**Workflow:**
+- [Config Completo](config/workflows.yaml)
+
 - 🚫 Prácticas a evitar
 
 ---
